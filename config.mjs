@@ -2,6 +2,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
+import { RspackVirtualModulePlugin } from "rspack-plugin-virtual-module";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isRunningWebpack = !!process.env.WEBPACK;
 const isRunningRspack = !!process.env.RSPACK;
@@ -18,7 +20,12 @@ const config = {
   entry: {
     main: "./src/index",
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new RspackVirtualModulePlugin({
+      contents: 'export default "Hello World";',
+    }),
+  ],
   output: {
     clean: true,
     path: isRunningWebpack

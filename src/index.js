@@ -1,3 +1,3 @@
-import('./render').then(exports => {
-    exports.render()
-})
+import hello from "contents";
+
+console.log(hello); // "Hello World"
